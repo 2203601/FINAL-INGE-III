@@ -245,16 +245,21 @@ export function init() {
   }
 }
 
-// Inicializar cuando el DOM esté listo
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
+// Evitar ejecución automática durante tests
+if (typeof process !== "undefined" && process.env.JEST_WORKER_ID) {
+  // estamos en Jest → NO auto-ejecutar init()
+} else {
+  // ejecución normal en navegador
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        init();
+        exposeGlobalFunctions();
+      });
+    } else {
       init();
       exposeGlobalFunctions();
-    });
-  } else {
-    init();
-    exposeGlobalFunctions();
+    }
   }
 }
 

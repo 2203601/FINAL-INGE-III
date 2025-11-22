@@ -1,4 +1,5 @@
 // __mocks__/globals.js
+import { jest } from '@jest/globals';
 
 export function mockGlobals() {
     global.alert = jest.fn();

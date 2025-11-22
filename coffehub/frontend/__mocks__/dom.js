@@ -1,4 +1,6 @@
 // __mocks__/dom.js
+
+
 export function mockDOM() {
     document.body.innerHTML = `
       <form id="coffee-form">
