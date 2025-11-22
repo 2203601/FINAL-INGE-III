@@ -1,7 +1,6 @@
-import { jest } from '@jest/globals';
+// jest.setup.js
+import { mockGlobals } from "./__mocks__/globals.js";
 
-global.fetch = jest.fn();
-global.alert = jest.fn();
-global.confirm = jest.fn();
-
-console.log('✅ Mocks globales cargados');
+beforeEach(() => {
+  mockGlobals();
+});

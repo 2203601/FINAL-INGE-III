@@ -1,0 +1,16 @@
+// __mocks__/globals.js
+
+export function mockGlobals() {
+    global.alert = jest.fn();
+    global.confirm = jest.fn(() => true);
+  
+    delete window.location;
+    window.location = {
+      hostname: "localhost"
+    };
+  }
+  
+  export function setHostname(hostname) {
+    window.location.hostname = hostname;
+  }
+  

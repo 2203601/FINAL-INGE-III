@@ -27,8 +27,8 @@
     "outputName": "junit.xml"
   },
   "jest": {
-    "testEnvironment": "./jest.env.js",
-    "setupFiles": ["./jest.setup.js"],
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["./jest.setup.js"],
     "transform": {},
     "coverageDirectory": "coverage",
     "collectCoverage": true,
