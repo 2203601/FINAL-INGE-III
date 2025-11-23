@@ -1,4 +1,4 @@
-// jest.env.js
+
 
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -19,7 +19,6 @@ export default class CustomEnvironment extends JsdomEnvironment {
     this.global.TextDecoder = TextDecoder;
     
     // Si necesitas simular window.location, también puedes hacerlo aquí si aplica
-    // Ej: this.global.window.location.hostname = 'localhost';
   }
   
   // Es buena práctica incluir el teardown aunque no haga nada extra

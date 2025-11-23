@@ -15,7 +15,7 @@ export default defineConfig({
   ],
 
   use: {
-    // 👉 En QA usar URL de Render automáticamente
+ 
     baseURL: process.env.FRONTEND_URL || (
       process.env.CI
         ? "https://coffehub-frontend-qa.onrender.com"
@@ -34,9 +34,7 @@ export default defineConfig({
     },
   ],
 
-  // ======================================================
-  // 🔧 Servidores locales (SOLO en desarrollo local)
-  // ======================================================
+
   webServer: process.env.CI
     ? undefined
     : [

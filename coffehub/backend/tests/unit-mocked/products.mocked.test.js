@@ -2,9 +2,6 @@ import { jest, describe, it, expect, beforeEach } from '@jest/globals';
 import { createMockCollection, MockObjectId } from '../mocks/mongodb.mock.js';
 import { mockProducts, mockNewProduct } from '../fixtures/products.fixtures.js';
 
-// ==========================================
-// 🎭 Tests Unitarios con MOCKS de MongoDB
-// ==========================================
 
 describe('🎭 Tests con Mocks de MongoDB - Products API', () => {
   let mockCollection;

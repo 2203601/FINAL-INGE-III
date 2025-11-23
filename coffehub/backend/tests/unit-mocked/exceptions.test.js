@@ -1,9 +1,6 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { createMockCollection, MockObjectId } from '../mocks/mongodb.mock.js';
 
-// ==========================================
-// ⚠️ Tests de Manejo de EXCEPCIONES
-// ==========================================
 
 describe('⚠️ Manejo de Excepciones con MongoDB', () => {
   let mockCollection;

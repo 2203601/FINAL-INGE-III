@@ -1,6 +1,4 @@
-// ==========================================
-// 📦 Datos de prueba (fixtures)
-// ==========================================
+//fixtures --> datos de prueba
 
 export const mockProducts = [
     {

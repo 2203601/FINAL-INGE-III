@@ -1,7 +1,4 @@
-// ==========================================
-// 🎭 Mock de MongoDB para tests unitarios
-// ==========================================
-
+//mocks para test unitarios
 import { jest } from '@jest/globals';
 
 /**
@@ -131,7 +128,7 @@ export function createMockMongoClient() {
 }
 
 /**
- * Mock de ObjectId - MEJORADO
+ * Mock de ObjectId 
  */
 export class MockObjectId {
   constructor(id) {

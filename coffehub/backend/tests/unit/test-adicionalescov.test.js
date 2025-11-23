@@ -1,6 +1,4 @@
-// ============================================
-// tests/unit/missing-coverage.test.js - ACTUALIZADO
-// ============================================
+
 import { describe, it, expect, beforeAll, afterAll } from '@jest/globals';
 import request from 'supertest';
 import app, { initializeApp, getMongoClient, getProductsCollection } from '../../server.js';

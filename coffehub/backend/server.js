@@ -1,6 +1,4 @@
-// ================================
-// ☕ CoffeeHub Backend - MongoDB
-// ================================
+
 import express from "express";
 import cors from "cors";
 import { MongoClient, ObjectId } from "mongodb";
@@ -9,9 +7,7 @@ const app = express();
 app.disable("x-powered-by");
 const PORT = process.env.PORT || 4000;
 
-// ================================
-// 🔗 MongoDB Connection
-// ================================
+
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
@@ -21,13 +17,11 @@ if (!MONGODB_URI) {
   }
 }
 
-// ✅ CAMBIO: Variables internas privadas (no exportadas)
 let _db;
 let _productsCollection;
 let _mongoClient;
 let _server;
 
-// ✅ CAMBIO: Getters para exportar valores de forma segura (readonly)
 export const getDb = () => _db;
 export const getProductsCollection = () => _productsCollection;
 export const getMongoClient = () => _mongoClient;
@@ -51,10 +45,6 @@ async function connectDB() {
     throw error;
   }
 }
-
-// ================================
-// 🛡️ FUNCIONES DE VALIDACIÓN REFACTORIZADAS
-// ================================
 
 /**
  * Valida el nombre del producto
@@ -187,9 +177,7 @@ function sanitizeProduct(productData) {
   return sanitized;
 }
 
-// ================================
-// 🌐 CORS
-// ================================
+
 const allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:4000",
@@ -219,9 +207,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// ================================
-// 📦 Endpoints API
-// ================================
+// Endpoints API
 
 // Health check
 app.get("/api/health", (req, res) => {
@@ -405,7 +391,7 @@ app.get("/api/stats", async (req, res) => {
 });
 
 // ================================
-// 🚀 Iniciar servidor
+//  Iniciar servidor
 // ================================
 
 export async function initializeApp() {

@@ -1,10 +1,6 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
 import { createMockCollection, MockObjectId } from '../mocks/mongodb.mock.js';
 
-// ==========================================
-// 🎯 Tests de CASOS EDGE y VALIDACIONES
-// ==========================================
-
 describe('🎯 Casos Edge y Validaciones Extremas', () => {
   let mockCollection;
 

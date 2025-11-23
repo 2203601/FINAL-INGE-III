@@ -1,4 +1,3 @@
-// __mocks__/dom.js
 
 
 export function mockDOM() {

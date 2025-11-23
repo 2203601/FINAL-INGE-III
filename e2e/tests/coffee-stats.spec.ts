@@ -1,6 +1,4 @@
-// ================================================================
-// ☕ CoffeeHub - Estadísticas de Cafés (Playwright E2E)
-// ================================================================
+
 import { test, expect } from '@playwright/test';
 const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:4000';
 test.beforeAll(async ({ request }) => {

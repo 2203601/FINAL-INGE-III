@@ -6,9 +6,7 @@ on:
 
 jobs:
 
-  # ======================================================
-  # 1️⃣ BUILD + TEST (Backend + Frontend)
-  # ======================================================
+  # Build y Test
   build-test:
     runs-on: ubuntu-latest
 
@@ -16,9 +14,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # ▶ CREAR .env.test PARA BACKEND
-      # -----------------------------
+      # .env.test para backend
       - name: Create .env.test for backend
         working-directory: coffehub/backend
         run: |
@@ -26,9 +22,7 @@ jobs:
           echo "NODE_ENV=test" >> .env.test
           echo "PORT=4001" >> .env.test
 
-      # -----------------------------
-      # BACKEND TESTS
-      # -----------------------------
+      # backend test
       - name: Install backend dependencies
         working-directory: coffehub/backend
         run: npm install
@@ -37,9 +31,7 @@ jobs:
         working-directory: coffehub/backend
         run: npm test
 
-      # -----------------------------
-      # FRONTEND TESTS
-      # -----------------------------
+      # frontnend test
       - name: Install frontend dependencies
         working-directory: coffehub/frontend
         run: npm install
@@ -48,9 +40,8 @@ jobs:
         working-directory: coffehub/frontend
         run: npm test
 
-      # -----------------------------
-      # 🔼 SUBIR ARTEFACTOS (Backend + Frontend)
-      # -----------------------------
+      # artifacts
+  
       - name: Upload Backend Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -64,9 +55,7 @@ jobs:
           path: coffehub/frontend
 
 
-  # ======================================================
-  # 2️⃣ BUILD + PUSH DOCKER IMAGES (QA)
-  # ======================================================
+  # build y push de las imagenes de dock
   build-push:
     needs: build-test
     runs-on: ubuntu-latest
@@ -75,24 +64,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # -----------------------------
-      # 🔽 DESCARGAR ARTEFACTO BACKEND
-      # -----------------------------
+      # descargar artifact de back
       - name: Download Backend Artifact
         uses: actions/download-artifact@v4
         with:
           name: backend-code
           path: coffehub/backend
 
-      # -----------------------------
-      # 🔽 DESCARGAR ARTEFACTO FRONTEND
-      # -----------------------------
+      # descargar artifact de front
       - name: Download Frontend Artifact
         uses: actions/download-artifact@v4
         with:
           name: frontend-code
           path: coffehub/frontend
 
+      # log ing en GHCR
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -105,18 +91,16 @@ jobs:
         id: repo
         run: echo "repo_lower=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
-      # -----------------------------
-      # BACKEND IMAGE (QA)
-      # -----------------------------
+     
+      # back imagen
       - name: Build backend image
         run: docker build -t ghcr.io/${{ steps.repo.outputs.repo_lower }}/backend:qa coffehub/backend
 
       - name: Push backend image
         run: docker push ghcr.io/${{ steps.repo.outputs.repo_lower }}/backend:qa
 
-      # -----------------------------
-      # FRONTEND IMAGE (QA)
-      # -----------------------------
+   
+      # front imagen
       - name: Build frontend image
         run: docker build -t ghcr.io/${{ steps.repo.outputs.repo_lower }}/frontend:qa coffehub/frontend
 
@@ -124,9 +108,8 @@ jobs:
         run: docker push ghcr.io/${{ steps.repo.outputs.repo_lower }}/frontend:qa
 
 
-  # ======================================================
-  # 3️⃣ DEPLOY QA AUTOMÁTICO + E2E TESTS CONTRA QA
-  # ======================================================
+
+  # deploy QA
   deploy-qa:
     needs: build-push
     runs-on: ubuntu-latest
@@ -145,13 +128,12 @@ jobs:
         env:
           RENDER_FRONTEND_QA_HOOK: ${{ secrets.RENDER_FRONTEND_QA_HOOK }}
 
-      # Esperamos un poco a que Render levante
+      # esperamos que render levante
       - name: Wait for QA environment
         run: sleep 60
 
-      # -----------------------------
-      # E2E TESTS CONTRA QA
-      # -----------------------------
+
+      # teste e2e
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -177,9 +159,7 @@ jobs:
           path: e2e/reports
 
 
-  # ======================================================
-  # 4️⃣ DEPLOY PROD (MANUAL APPROVAL)
-  # ======================================================
+  # deply PROD
   deploy-prod:
     needs: deploy-qa
     runs-on: ubuntu-latest

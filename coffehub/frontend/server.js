@@ -1,4 +1,3 @@
-// server.js - Servidor Express para servir el frontend con variables de entorno
 import express from 'express';
 import path from 'path';
 import fs from 'fs';

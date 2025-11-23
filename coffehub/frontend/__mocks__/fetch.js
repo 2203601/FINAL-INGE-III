@@ -1,4 +1,3 @@
-// __mocks__/fetch.js
 import { jest } from '@jest/globals';
 
 export function mockFetchSuccess(data = []) {

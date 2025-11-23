@@ -1,6 +1,3 @@
-# ===========================================
-# ☕ COFFEEHUB CI/CD - QA + E2E + PRODUCCIÓN (Azure + MongoDB + SonarCloud)
-# ===========================================
 
 trigger:
   branches:
