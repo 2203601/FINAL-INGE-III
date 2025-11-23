@@ -31,7 +31,7 @@ export function getBackendURL() {
 
   // QA (hostname simulado en los tests)
   if (hostname.includes("qa")) {
-    return "https://coffehub-backend-qa1.onrender.com";
+    return "https://coffehub-backend-qa.onrender.com";
   }
 
   // PROD (hostname simulado en los tests)
@@ -45,7 +45,7 @@ export function getBackendURL() {
   }
 
   // Fallback → QA
-  return "https://coffehub-backend-qa1.onrender.com";
+  return "https://coffehub-backend-qa.onrender.com";
 }
 // -----------------------------
 // 🔹 Formulario
